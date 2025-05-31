@@ -1,0 +1,52 @@
+{
+  "name": "lits-editor",
+  "version": "1.0.0",
+  "description": "A syntax-highlighting code editor web component for Lits",
+  "type": "module",
+  "main": "./dist/lits-editor.js",
+  "module": "./dist/lits-editor.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "preview": "vite preview",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "lits",
+    "code-editor",
+    "syntax-highlighting",
+    "web-component",
+    "custom-element"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mojir/lits": "2.1.29"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vitest/ui": "^1.2.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "happy-dom": "^12.10.3",
+    "prettier": "^3.2.4",
+    "rollup": "^4.9.5",
+    "rollup-plugin-dts": "^6.1.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vitest": "^1.2.0"
+  }
+}

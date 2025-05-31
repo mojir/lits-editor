@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lits Code Editor Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Lits Code Editor Demo</h1>
+
+    <section class="demo-section">
+      <h2>Basic Editor</h2>
+      <lits-editor id="basic" show-line-numbers="true">
+// Fibonacci sequence in Lits
+let fibonacci = (n) -> {
+  if (n === 2 || n === 1)
+    n
+  else
+    fibonacci(n - 1) + fibonacci(n - 2)
+};
+
+// Calculate first 10 fibonacci numbers
+range(10) |> map(_, fibonacci)
+      </lits-editor>
+    </section>
+
+    <section class="demo-section">
+      <h2>Dark Theme</h2>
+      <lits-editor id="dark" class="dark-theme" show-line-numbers="true">
+// Advanced example with destructuring
+let { map, filter, reduce } = import("functional");
+
+      </lits-editor>
+    </section>
+
+    <section class="demo-section">
+      <h2>Interactive Example</h2>
+      <div class="controls">
+        <button id="get-value">Get Value</button>
+        <button id="set-value">Set Value</button>
+        <button id="toggle-lines">Toggle Line Numbers</button>
+        <button id="toggle-readonly">Toggle Readonly</button>
+      </div>
+      <lits-editor id="interactive" placeholder="Enter your Lits code here..."></lits-editor>
+      <pre id="output"></pre>
+    </section>
+
+    <section class="demo-section">
+      <h2>Error Handling</h2>
+      <lits-editor id="errors" show-errors="true">
+; This will show syntax errors
+let x = [1, 2, 3
+let y = "unclosed string
+      </lits-editor>
+    </section>
+  </div>
+
+  <script type="module">
+    import '../dist/lits-editor.js';
+
+    // Interactive demo
+    const interactive = document.getElementById('interactive');
+    const output = document.getElementById('output');
+
+    document.getElementById('get-value').addEventListener('click', () => {
+      output.textContent = `Current value:\n${interactive.value}`;
+    });
+
+    document.getElementById('set-value').addEventListener('click', () => {
+      interactive.value = '; Set programmatically\nlet greeting = "Hello, Lits!";\nwrite!(greeting)';
+    });
+
+    document.getElementById('toggle-lines').addEventListener('click', () => {
+      interactive.showLineNumbers = !interactive.showLineNumbers;
+    });
+
+    document.getElementById('toggle-readonly').addEventListener('click', () => {
+      interactive.readonly = !interactive.readonly;
+    });
+
+    // Listen for events
+    interactive.addEventListener('input', (e) => {
+      console.log('Input:', e.detail.value);
+    });
+
+    interactive.addEventListener('error', (e) => {
+      if (e.detail.error) {
+        output.textContent = `Error: ${e.detail.error}`;
+      }
+    });
+  </script>
+</body>
+</html>
