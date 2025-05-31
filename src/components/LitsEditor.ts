@@ -127,6 +127,7 @@ export class LitsEditor extends HTMLElement {
       const { Lits } = await import("@mojir/lits");
       this._lits = new Lits();
       this.tokenize();
+      this.updateLineNumbers();
     } catch (error) {
       console.error("Failed to load Lits:", error);
       this.updateHighlighting();
@@ -197,6 +198,7 @@ export class LitsEditor extends HTMLElement {
 
     this._value = this._textarea.value;
     this._debouncedTokenize();
+    this.updateLineNumbers();
 
     this.dispatchEvent(
       new CustomEvent("input", {
@@ -281,7 +283,9 @@ export class LitsEditor extends HTMLElement {
       this._textarea.readOnly = this.readonly;
       this._textarea.placeholder = this.getAttribute("placeholder") || "";
       const maxLength = this.getAttribute("max-length");
-      this._textarea.maxLength = maxLength ? parseInt(maxLength) : -1;
+      if (maxLength && !isNaN(parseInt(maxLength))) {
+        this._textarea.maxLength = parseInt(maxLength);
+      }
     }
   }
 

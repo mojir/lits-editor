@@ -16,8 +16,7 @@ export function getStyles(): string {
     .editor-container {
       position: relative;
       display: flex;
-      min-height: 100px;
-      max-height: 600px;
+      height: 100%;
       overflow: auto;
     }
 
@@ -50,7 +49,6 @@ export function getStyles(): string {
       width: 100%;
       height: 100%;
       margin: 0;
-      padding: 8px;
       border: none;
       outline: none;
       resize: none;
